@@ -1,8 +1,8 @@
 FROM alpine
 RUN apk add --no-cache libffi-dev \
-    && apk add --no-cache $(echo $(wget --no-check-certificate -qO- https://raw.githubusercontent.com/yanyu469/nas-tools/${REPO_BRANCH}/package_list.txt)) \
-    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
-    && echo "${TZ}" > /etc/timezone \
+    && apk add --no-cache $(echo $(wget --no-check-certificate -qO- https://raw.githubusercontent.com/yanyu469/nas-tools/v2_patch/package_list.txt)) \
+    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone \
     && ln -sf /usr/bin/python3 /usr/bin/python \
     && curl https://rclone.org/install.sh | bash \
     && if [ "$(uname -m)" = "x86_64" ]; then ARCH=amd64; elif [ "$(uname -m)" = "aarch64" ]; then ARCH=arm64; fi \
@@ -10,7 +10,7 @@ RUN apk add --no-cache libffi-dev \
     && chmod +x /usr/bin/mc \
     && pip install --upgrade pip setuptools wheel \
     && pip install cython \
-    && pip install -r https://raw.githubusercontent.com/yanyu469/nas-tools/${REPO_BRANCH}/requirements.txt \
+    && pip install -r https://raw.githubusercontent.com/yanyu469/nas-tools/v2_patch/requirements.txt \
     && apk del libffi-dev \
     && npm install pm2 -g \
     && rm -rf /tmp/* /root/.cache /var/cache/apk/*
@@ -19,7 +19,7 @@ ENV LANG="C.UTF-8" \
     NASTOOL_CONFIG="/config/config.yaml" \
     NASTOOL_AUTO_UPDATE=false \
     NASTOOL_CN_UPDATE=false \
-    REPO_BRANCH=v2 \
+    REPO_BRANCH=v2_patch \
     PS1="\u@\h:\w \$ " \
     REPO_URL="https://github.com/yanyu469/nas-tools.git" \
     PYPI_MIRROR="https://pypi.tuna.tsinghua.edu.cn/simple" \
