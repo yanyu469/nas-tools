@@ -208,6 +208,7 @@ class Qbittorrent(_IDownloadClient):
             date_now = int(time.mktime(datetime.now().timetuple()))
             torrent_seeding_time = date_now - date_done if date_done else 0
             torrent_upload_avs = torrent.uploaded / torrent_seeding_time if torrent_seeding_time else 0
+
             if ratio and torrent.ratio <= ratio:
                 continue
             if seeding_time and torrent_seeding_time <= seeding_time * 3600:
@@ -216,8 +217,6 @@ class Qbittorrent(_IDownloadClient):
                 continue
             if upload_avs and torrent_upload_avs >= upload_avs * 1024:
                 continue
-
-                m-team
             if savepath_key and not re.findall(savepath_key, torrent.save_path, re.I):
                 continue
             if tracker_key and not re.findall(tracker_key, torrent.tracker, re.I):
