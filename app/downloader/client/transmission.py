@@ -273,6 +273,7 @@ class Transmission(_IDownloadClient):
         upload_avs = config.get("upload_avs")
         savepath_key = config.get("savepath_key")
         tracker_key = config.get("tracker_key")
+        no_tracker_key = config.get("no_tracker_key")
         tr_state = config.get("tr_state")
         tr_error_key = config.get("tr_error_key")
         for torrent in torrents:
@@ -301,6 +302,17 @@ class Transmission(_IDownloadClient):
                             tacker_key_flag = True
                             break
                     if not tacker_key_flag:
+                        continue
+            if no_tracker_key:
+                if not torrent.trackers:
+                    continue
+                else:
+                    tacker_key_flag = False
+                    for tracker in torrent.trackers:
+                        if re.findall(no_tracker_key, tracker.get("announce", ""), re.I):
+                            tacker_key_flag = True
+                            break
+                    if tacker_key_flag:
                         continue
             if tr_state and torrent.status not in tr_state:
                 continue
