@@ -187,9 +187,10 @@ class Qbittorrent(_IDownloadClient):
         remove_torrents = []
         remove_torrents_ids = []
         onlynastool = config.get("onlynastool")
-        torrents, error_flag = self.get_torrents()
         if onlynastool :
             torrents, error_flag = self.get_torrents(tag=config.get("filter_tags"))
+        else:
+            torrents, error_flag = self.get_torrents()
         log.error(f"【torrents原始长度:{len(torrents)}】,tags{config.get('filter_tags')}")
         if error_flag:
             return []
@@ -212,8 +213,6 @@ class Qbittorrent(_IDownloadClient):
             date_now = int(time.mktime(datetime.now().timetuple()))
             torrent_seeding_time = date_now - date_done if date_done else 0
             torrent_upload_avs = torrent.uploaded / torrent_seeding_time if torrent_seeding_time else 0
-
-            log.error(f"【torrent名字:{torrent.name}】")
             if ratio and torrent.ratio <= ratio:
                 continue
             if seeding_time and torrent_seeding_time <= seeding_time * 3600:
