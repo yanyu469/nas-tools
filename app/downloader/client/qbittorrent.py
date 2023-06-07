@@ -188,7 +188,7 @@ class Qbittorrent(_IDownloadClient):
         remove_torrents_ids = []
         torrents, error_flag = self.get_torrents(tag=config.get("filter_tags"))
         # torrents, error_flag = self.get_torrents()
-        log.error(f"【torrents原始长度:{len(torrents)}】")
+        log.error(f"【torrents原始长度:{len(torrents)}】,tags{config.get('filter_tags')}")
         if error_flag:
             return []
         ratio = config.get("ratio")
