@@ -52,6 +52,8 @@ class ModuleConf(object):
 
     # 索引器
     INDEXER_DICT = {
+        "prowlarr": IndexerType.PROWLARR,
+        "jackett": IndexerType.JACKETT,
         "builtin": IndexerType.BUILTIN
     }
 
