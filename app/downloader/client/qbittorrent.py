@@ -190,8 +190,9 @@ class Qbittorrent(_IDownloadClient):
         if onlynastool :
             torrents, error_flag = self.get_torrents(tag=config.get("filter_tags"))
         else:
-            torrents, error_flag = self.get_torrents()
-        log.error(f"【torrents原始长度:{len(torrents)}】,tags{config.get('filter_tags')}")
+            filter_tags = config.get("filter_tags")
+            filter_tags.remove("NASTOOLS")
+            torrents, error_flag = self.get_torrents(tag=config.get("filter_tags"))
         if error_flag:
             return []
         ratio = config.get("ratio")
