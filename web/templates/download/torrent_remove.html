@@ -175,14 +175,6 @@
               {% endif %}
               </div>
             </div>
-            <div class="datagrid-item">
-              <div class="datagrid-title">不包含tracker关键词</div>
-              <div class="datagrid-content">
-              {% if Attr.config.no_tracker_key %}
-                <span class="badge me-2 bg-orange">{{ Attr.config.no_tracker_key }}</span>
-              {% endif %}
-              </div>
-            </div>
             {% if Attr.downloader == "Qb" %}
               <div class="datagrid-item">
                 <div class="datagrid-title">分类</div>
@@ -374,13 +366,6 @@
               <input type="text" id="tracker_key" class="form-control" placeholder="支持正则表达式">
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <label class="form-label">不包含tracker关键词 <span class="form-help" title="种子第一个活动tracker不含有关键词视为满足该条件，留空为不启用"
-                data-bs-toggle="tooltip">?</span></label>
-              <input type="text" id="no_tracker_key" class="form-control" placeholder="支持正则表达式">
-            </div>
-          </div>
         </div>
         <div class="form-selectgroup-boxes row mb-3">
           <label class="form-label required">下载器</label>
@@ -493,7 +478,6 @@
     $("#tags").val('');
     $("#savepath_key").val('');
     $("#tracker_key").val('');
-    $("#no_tracker_key").val('');
     show_downloader("Qb");
     $("#qb_category").val('');
     $("#qb_state").val('');
@@ -539,7 +523,6 @@
         $("#tags").val(ret.detail.config.tags.join(';'));
         $("#savepath_key").val(ret.detail.config.savepath_key);
         $("#tracker_key").val(ret.detail.config.tracker_key);
-        $("#no_tracker_key").val(ret.detail.config.no_tracker_key);
         show_downloader(ret.detail.downloader);
         if (ret.detail.downloader == "Qb") {
           $("#qb_category").val(ret.detail.config.qb_category.join(';'));
@@ -610,7 +593,6 @@
       tags: $("#tags").val(),
       savepath_key: $("#savepath_key").val(),
       tracker_key: $("#tracker_key").val(),
-      no_tracker_key: $("#no_tracker_key").val(),
       downloader: $('input:radio[name=downloader]:checked').val(),
       qb_state: $("#qb_state").val(),
       qb_category: $("#qb_category").val(),

@@ -205,7 +205,6 @@ class Qbittorrent(_IDownloadClient):
         upload_avs = config.get("upload_avs")
         savepath_key = config.get("savepath_key")
         tracker_key = config.get("tracker_key")
-        no_tracker_key = config.get("no_tracker_key")
         qb_state = config.get("qb_state")
         qb_category = config.get("qb_category")
         for torrent in torrents:
@@ -225,13 +224,10 @@ class Qbittorrent(_IDownloadClient):
                 continue
             if tracker_key and not re.findall(tracker_key, torrent.tracker, re.I):
                 continue
-            if no_tracker_key and re.findall(no_tracker_key, torrent.tracker, re.I):
-                continue
             if qb_state and torrent.state not in qb_state:
                 continue
             if qb_category and torrent.category not in qb_category:
                 continue
-
             remove_torrents.append({
                 "id": torrent.hash,
                 "name": torrent.name,
