@@ -191,7 +191,9 @@ class Qbittorrent(_IDownloadClient):
             torrents, error_flag = self.get_torrents(tag=config.get("filter_tags"))
         else:
             filter_tags = config.get("filter_tags")
-            filter_tags.remove("NASTOOLS")
+            log.info(f"{filter_tags}")
+            filter_tags.remove("NASTOOL")
+            log.info(f"{filter_tags}")
             torrents, error_flag = self.get_torrents(tag=config.get("filter_tags"))
         if error_flag:
             return []
