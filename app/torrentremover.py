@@ -224,7 +224,6 @@ class TorrentRemover(object):
         tags = [tag for tag in tags if tag]
         savepath_key = data.get("savepath_key")
         tracker_key = data.get("tracker_key")
-        no_tracker_key = data.get("no_tracker_key")
         downloader = data.get("downloader")
         if downloader not in ModuleConf.TORRENTREMOVER_DICT.keys():
             return False, "下载器参数不合法"
@@ -260,7 +259,6 @@ class TorrentRemover(object):
             "tags": tags,
             "savepath_key": savepath_key,
             "tracker_key": tracker_key,
-            "no_tracker_key": no_tracker_key,
             "qb_state": qb_state,
             "qb_category": qb_category,
             "tr_state": tr_state,
