@@ -2530,7 +2530,7 @@ class WebAction:
             times = rules.get("time").split("#")
             if times[0]:
                 rule_htmls.append(
-                    '<span class="badge badge-outline text-orange me-1 mb-1" title="做种时间">做种时间: %s %s小时</span>'
+                    '<span class="badge badge-outline text-orange me-1 mb-1" title="做种时间">做种时间: %s %s分钟</span>'
                     % (rule_filter_string.get(times[0]), times[1]))
         if rules.get("ratio"):
             ratios = rules.get("ratio").split("#")

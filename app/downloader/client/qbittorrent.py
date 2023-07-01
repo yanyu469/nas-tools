@@ -191,11 +191,10 @@ class Qbittorrent(_IDownloadClient):
             torrents, error_flag = self.get_torrents(tag=config.get("filter_tags"))
         else:
             torrents, error_flag = self.get_torrents()
-        log.error(f"【torrents原始长度:{len(torrents)}】,tags{config.get('filter_tags')}")
         if error_flag:
             return []
         ratio = config.get("ratio")
-        # 做种时间 单位：小时
+        # 做种时间 单位：分钟
         seeding_time = config.get("seeding_time")
         # 大小 单位：GB
         size = config.get("size")
@@ -215,7 +214,7 @@ class Qbittorrent(_IDownloadClient):
             torrent_upload_avs = torrent.uploaded / torrent_seeding_time if torrent_seeding_time else 0
             if ratio and torrent.ratio <= ratio:
                 continue
-            if seeding_time and torrent_seeding_time <= seeding_time * 3600:
+            if seeding_time and torrent_seeding_time <= seeding_time * 60:
                 continue
             if size and (torrent.size >= maxsize or torrent.size <= minsize):
                 continue

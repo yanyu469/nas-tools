@@ -263,7 +263,7 @@ class Transmission(_IDownloadClient):
             return []
         tags = config.get("filter_tags")
         ratio = config.get("ratio")
-        # 做种时间 单位：小时
+        # 做种时间 单位：分钟
         seeding_time = config.get("seeding_time")
         # 大小 单位：GB
         size = config.get("size")
@@ -284,7 +284,7 @@ class Transmission(_IDownloadClient):
             torrent_upload_avs = torrent_uploaded / torrent_seeding_time if torrent_seeding_time else 0
             if ratio and torrent.ratio <= ratio:
                 continue
-            if seeding_time and torrent_seeding_time <= seeding_time*3600:
+            if seeding_time and torrent_seeding_time <= seeding_time*60:
                 continue
             if size and (torrent.total_size >= maxsize or torrent.total_size <= minsize):
                 continue

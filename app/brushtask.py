@@ -824,7 +824,7 @@ class BrushTask(object):
                 rule_times = remove_rule.get("time").split("#")
                 if rule_times[0]:
                     if len(rule_times) > 1 and rule_times[1]:
-                        if float(seeding_time) > float(rule_times[1]) * 3600:
+                        if float(seeding_time) > float(rule_times[1]) * 60:
                             return True, BrushDeleteType.SEEDTIME
             if remove_rule.get("ratio") and ratio:
                 rule_ratios = remove_rule.get("ratio").split("#")

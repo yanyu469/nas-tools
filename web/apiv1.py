@@ -1575,7 +1575,7 @@ class BrushTaskUpdate(ClientResource):
     parser.add_argument('brushtask_exclude', type=str, help='排除', location='form')
     parser.add_argument('brushtask_dlcount', type=int, help='同时下载任务数', location='form')
     parser.add_argument('brushtask_peercount', type=int, help='做种人数限制', location='form')
-    parser.add_argument('brushtask_seedtime', type=float, help='做种时间(小时)', location='form')
+    parser.add_argument('brushtask_seedtime', type=float, help='做种时间(分钟)', location='form')
     parser.add_argument('brushtask_seedratio', type=float, help='分享率', location='form')
     parser.add_argument('brushtask_seedsize', type=int, help='上传量(GB)', location='form')
     parser.add_argument('brushtask_dltime', type=float, help='下载耗时(小时)', location='form')
@@ -2224,7 +2224,7 @@ class TorrentRemoverTaskUpdate(ClientResource):
     parser.add_argument('onlynastool', type=int, help='只管理NASTool添加的下载（0-否/1-是）', location='form',
                         required=True)
     parser.add_argument('ratio', type=float, help='分享率', location='form')
-    parser.add_argument('seeding_time', type=int, help='做种时间（小时）', location='form')
+    parser.add_argument('seeding_time', type=int, help='做种时间（分钟）', location='form')
     parser.add_argument('upload_avs', type=int, help='平均上传速度（KB/S）', location='form')
     parser.add_argument('size', type=str, help='种子大小（GB）', location='form')
     parser.add_argument('savepath_key', type=str, help='保存路径关键词', location='form')
